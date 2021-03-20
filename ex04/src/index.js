@@ -1,21 +1,22 @@
 function sumFibonacci(num) {
-  if (num < 0) {
-    return 0;
-  } else if (num <= 1) return 1;
-  var fib = [];
-  fib[0] = 1;
-  fib[1] = 1;
-  for (var i = 2; i <= num; i++) {
-    fib[i] = fib[i - 2] + fib[i - 1];
+  var sum = 0;
+  var n = 0;
+
+  while (n <= num) {
+    var value = fibonacciElement(n);
+
+    if (value % 2 !== 0 && value <= num) {
+      sum = sum + value;
+    }
+    n++;
   }
-  fib = fib.filter(function (val) {
-    return val % 2 !== 0 && val <= num;
-  });
-  fib = fib.reduce(function (a, b) {
-    return a + b;
-  });
-  return fib;
+  return sum;
 }
+function fibonacciElement(n) {
+  if (n <= 1) return n;
+  return fibonacciElement(n - 1) + fibonacciElement(n - 2);
+}
+
 console.log(sumFibonacci(1));
 console.log(sumFibonacci(10));
 console.log(sumFibonacci(20));
